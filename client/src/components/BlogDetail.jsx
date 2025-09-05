@@ -170,7 +170,7 @@ function BlogDetail() {
                         {comment.user?.username || "Anonymous"}
                       </p>
                       <span className="text-xs text-gray-500">
-                        {new Date(blog.createdAt).toLocaleString([], {
+                        {new Date(comment.createdAt).toLocaleString([], {
                           dateStyle: "medium",
                           timeStyle: "short",
                         })}
