@@ -80,7 +80,7 @@ function BlogDetail() {
     <div className="min-h-screen bg-black">
       {blog ? (
         <div className="max-w-3xl mx-auto my-6 rounded-2xl bg-purple-500/5 backdrop-blur-sm shadow-lg border border-purple-500/20 overflow-hidden p-6 relative">
-          {/* Edit/Delete Buttons (top-right corner) */}
+
           {user && blog.author?._id === user._id && (
             <div className="absolute top-4 right-4 md:flex-row flex md:gap-2 flex-col gap-4">
               <button
@@ -100,7 +100,7 @@ function BlogDetail() {
           )}
 
           {/* Title + Author + Date */}
-          <div className="text-center mb-6">
+          <div className="text-center mt-[30px] mb-6">
             <h1 className="text-4xl font-bold text-purple-400">{blog.title}</h1>
             <p className="text-gray-400 text-sm mt-2">
               By <span className="text-purple-300">{blog.author?.username}</span>{" "}
