@@ -70,7 +70,7 @@ const getAllBlogs = async function (req, res) {
 
 const getUserBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({ author: req.user._id }).sort({ createdAt: -1 });
+    const blogs = await Blog.find({ author: req.user._id }).populate("author", "username fullname").sort({ createdAt: -1 });
     res.status(200).json({ data: blogs, message: "Blog fetched successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });
