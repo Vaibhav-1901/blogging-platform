@@ -80,6 +80,7 @@ const loginUser = async function (req, res) {
         const options = {
             httpOnly: true,
             secure: true,
+            sameSite: "none",
         }
         return res
             .status(200)
@@ -96,10 +97,11 @@ const loginUser = async function (req, res) {
 }
 
 const logoutUser = async function (req, res) {
-    
+
     const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "none",
     }
     const user = req.user;
     // console.log(user.email);
@@ -126,8 +128,8 @@ const logoutUser = async function (req, res) {
 
 }
 const getCurrentUser = async function (req, res) {
-    if(!req.user){
-        return res.status(400).json({message:"User not logged in"})
+    if (!req.user) {
+        return res.status(400).json({ message: "User not logged in" })
     }
     res.status(200).json({
         status: 200,
@@ -136,46 +138,47 @@ const getCurrentUser = async function (req, res) {
     });
 
 }
-const RefreshAccessToken=async (req,res)=>{
+const RefreshAccessToken = async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
+        sameSite: "none",
     }
 
-    const IncomingRefreshToken=req.cookies?.RefreshToken || req.body.RefreshToken
-    if(!IncomingRefreshToken){//Getting the token 
-        return res.status(400).json({message:"No Refresh Token"});
+    const IncomingRefreshToken = req.cookies?.RefreshToken || req.body.RefreshToken
+    if (!IncomingRefreshToken) {//Getting the token 
+        return res.status(400).json({ message: "No Refresh Token" });
     }
-   try {
-     const DecodedRefreshToken=jwt.verify(IncomingRefreshToken,process.env.REFRESH_TOKEN_SECRET);//Decoding
-     
-     const id=DecodedRefreshToken._id;
- 
- 
-     const user=await User.findById(id);
-     if(!user){
-         console.log("User not found")
-     }
- 
-     if(user?.RefreshToken!=IncomingRefreshToken){
-        return  res.status(400).json({message:"Invalid Refresh Token"})
- 
-     }
- 
-     //All verifications Done Generating Access Token
- 
-     const{AccessToken,RefreshToken}=await generateAccessAndRefreshToken(user._id);//Destructing cant be diff from what you are returning
- 
-    return  res
-     .status(200)
-     .cookie("AccessToken",AccessToken,options)
-     .cookie("RefreshToken",RefreshToken,options)
-     .json({
-         message:"Access Token Renewed"
-     })
- 
-   } catch (error) {
-    return res.status(400).json({message:error.message})
-   }
+    try {
+        const DecodedRefreshToken = jwt.verify(IncomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);//Decoding
+
+        const id = DecodedRefreshToken._id;
+
+
+        const user = await User.findById(id);
+        if (!user) {
+            console.log("User not found")
+        }
+
+        if (user?.RefreshToken != IncomingRefreshToken) {
+            return res.status(400).json({ message: "Invalid Refresh Token" })
+
+        }
+
+        //All verifications Done Generating Access Token
+
+        const { AccessToken, RefreshToken } = await generateAccessAndRefreshToken(user._id);//Destructing cant be diff from what you are returning
+
+        return res
+            .status(200)
+            .cookie("AccessToken", AccessToken, options)
+            .cookie("RefreshToken", RefreshToken, options)
+            .json({
+                message: "Access Token Renewed"
+            })
+
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
 }
-export { registerUser, loginUser, logoutUser, getCurrentUser,RefreshAccessToken }
+export { registerUser, loginUser, logoutUser, getCurrentUser, RefreshAccessToken }
