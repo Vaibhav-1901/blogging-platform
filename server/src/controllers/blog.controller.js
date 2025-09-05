@@ -55,7 +55,7 @@ const getSingleBlog = async function (req, res) {
 const getAllBlogs = async function (req, res) {
   try {
     const blogs = await Blog.find()
-      .populate("author", "username fullname")
+      .populate("author", "username fullname").sort({ createdAt: -1 })
     return res.status(200).json({
       status: 200,
       data: blogs,
