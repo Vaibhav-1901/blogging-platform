@@ -81,6 +81,7 @@ const loginUser = async function (req, res) {
             httpOnly: true,
             secure: true,
             sameSite: "none",
+            path: "/",
         }
         return res
             .status(200)
@@ -102,6 +103,7 @@ const logoutUser = async function (req, res) {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        path: "/",
     }
     const user = req.user;
     // console.log(user.email);
@@ -143,6 +145,7 @@ const RefreshAccessToken = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        path: "/",
     }
 
     const IncomingRefreshToken = req.cookies?.RefreshToken || req.body.RefreshToken

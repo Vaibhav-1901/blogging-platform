@@ -124,7 +124,7 @@ const Navbar = () => {
 
                 <div className="md:hidden bg-[#0d0d0d] text-white px-6 py-3 space-y-4 shadow-lg transition ">
                     <Link to="/" className="block hover:text-purple-400 transition" onClick={() => setIsMenuOpen(false)}>Home</Link>
-                    <Link to="/blogs" className="block hover:text-purple-400 transition" onClick={() => setIsMenuOpen(false)}>Blogs</Link>
+                    <Link to="/blogs" className="block hover:text-purple-400 transition" onClick={() => setIsMenuOpen(false)}>Your blogs</Link>
                     <Link to="/about" className="block hover:text-purple-400 transition" onClick={() => setIsMenuOpen(false)}>About</Link>
                     <Link to="/contact" className="block hover:text-purple-400 transition" onClick={() => setIsMenuOpen(false)}>Contact</Link>
 
