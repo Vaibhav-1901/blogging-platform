@@ -15,8 +15,8 @@ Built with **React (frontend)** and **Express.js + MongoDB (backend)**.
 ---
 
 ## 🌐 Live Demo
-👉 [Frontend (Vercel)](https://your-frontend-link.vercel.app)  
-👉 [Backend API (Render)](https://your-backend-link.onrender.com)
+👉 [Frontend (Vercel)](https://blogging-platform-swart.vercel.app/)  
+👉 [Backend API (Render)](https://blogging-platform-server-skk1.onrender.com/)
 
 ---
 
