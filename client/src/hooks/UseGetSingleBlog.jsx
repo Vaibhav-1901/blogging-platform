@@ -1,38 +1,33 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../../server/constants";
 import { useBlog } from "../context/BlogContext";
-import fetchWithRefresh from "../utilities/fetchWithRefresh";
-import { useAuth } from "../context/AuthContext";
 
 
-function useGetUserBlogs() {
-    const [blogs, setBlogs] = useState([])
+function useGetSingleBlog(slug) {
+    const [blog, setBlog] = useState([])
     const [error, setError] = useState(null);
-    const { refresh, setRefresh } = useBlog();
-
+    const { refresh ,setRefresh} = useBlog();
      useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetchWithRefresh(`${BASE_URL}/api/blogs/my-blogs`, {
+        const res = await fetch(`${BASE_URL}/api/blogs/${slug}`, {
           method: "GET",
           credentials: "include", 
         });
 
         const data = await res.json();
-
         if (!res.ok) {
-          throw new Error(data.message || "Failed to fetch blogs");
+          throw new Error(data.message || "Failed to fetch blogs");//passing in try catch 
         }
-
-        setBlogs(data.data || []);
+        setBlog(data.data || []);
       } catch (err) {
         setError(err.message);
       }
     };
 
     fetchBlogs();
-  }, [refresh]);
+  }, [refresh,slug]);
 
-  return { blogs, error };
+  return { blog, error };
 }
-export default useGetUserBlogs;
+export default useGetSingleBlog;

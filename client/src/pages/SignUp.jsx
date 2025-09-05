@@ -2,18 +2,46 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "../components/InputField";
+import { BASE_URL } from "../../../server/constants";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer,toast } from "react-toastify";
 
 const SignUp = () => {
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
+    const [message, setMessage] = useState("");
+    const [isSuccess, setIsSuccess] = useState(null);
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm();
+    const navigate = useNavigate()
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        try {
+            const res = await fetch(`${BASE_URL}/api/users/signup`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            const result = await res.json();
+            if (res.ok) {
+                setMessage("✅ Registered successfully!");
+                toast.success(" Registered successfully!")
+                setIsSuccess(true);
+                navigate("/signin")
+            }
+            else {
+                setMessage(`${result.message || "Sign in failed"}`);
+                setIsSuccess(false);
+            }
+        }
+        catch (error) {
+            console.error("Register error:", error);
+            setMessage("❌ Something went wrong. Please try again.");
+        }
+
     }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -29,7 +57,7 @@ const SignUp = () => {
                         placeholder="Enter Full Name"
                         register={register}
                         rules={{
-                            required: "Full Name is required"    
+                            required: "Full Name is required"
                         }}
                         errors={errors}
                     />
@@ -55,11 +83,17 @@ const SignUp = () => {
                         }}
                         errors={errors}
                     />
+                    {message && (
+                        <p className="text-red-500 text-sm mt-1 ">
+                            {message}
+                        </p>
+                    )}
                     <button
                         type="submit"
+                        disabled={isSubmitting}
                         className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition"
                     >
-                        Submit
+                        {isSubmitting ? "Loading" : "Sign Up"}
                     </button>
 
 
@@ -67,6 +101,7 @@ const SignUp = () => {
                 <p className="mt-4 text-sm text-gray-400 text-center">
                     <a href="/" className="text-purple-400 hover:underline">← Back to Home</a>
                 </p>
+               
             </div>
         </div>
     )

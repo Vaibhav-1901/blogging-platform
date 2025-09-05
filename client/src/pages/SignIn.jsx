@@ -2,18 +2,47 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "../components/InputField";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../../server/constants";
+import fetchWithRefresh from "../utilities/fetchWithRefresh";
+import { ToastContainer,toast } from "react-toastify";
 
 const SignIn = () => {
-    const [username, setusername] = useState("")
-    const [password, setpassword] = useState("")
+    const [message, setMessage] = useState("");
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm();
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const navigate = useNavigate()
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        try {
+            const res = await fetchWithRefresh(`${BASE_URL}/api/users/signin`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify(data)
+            })
+            const result = await res.json();
+            if (res.ok) {
+                setMessage(" Signed In  successfully!");
+               toast.success(" Signed In  successfully!")
+                setIsLoggedIn(true)
+                navigate("/")
+            }
+            else {
+                setMessage(`❌ ${result.message || "Sign in failed"}`)
+            }
+        }
+        catch (error) {
+            console.log("Sign in error:", error);
+            setMessage("❌ Something went wrong. Please try again.");
+        }
     }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -25,6 +54,7 @@ const SignIn = () => {
                     <InputField
                         label="Username"
                         name="username"
+                        placeholder="Enter Username"
                         register={register}
                         rules={{ required: "Username is required" }}
                         errors={errors} />
@@ -41,15 +71,22 @@ const SignIn = () => {
                         }}
                         errors={errors}
                     />
+                     {message && (
+                     <p className="text-red-500 text-sm mt-1 ">
+                            {message}
+                        </p>
+                )}
                     <button
                         type="submit"
+                        disabled={isSubmitting}
                         className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition"
                     >
-                        Submit
+                        {isSubmitting ? "Loading" : "Sign In"}
                     </button>
 
 
                 </form>
+               
                 <p className="mt-4 text-sm text-gray-400 text-center">
                     <a href="/" className="text-purple-400 hover:underline">← Back to Home</a>
                 </p>

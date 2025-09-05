@@ -16,7 +16,7 @@ const InputField = ({ label, name, register, rules, errors, type = "text", place
         placeholder={placeholder}
         {...register(name, rules)}
         className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 
-        ${errors[name] ? "border-red-500 focus:ring-red-500" : "border-gray-300 focus:ring-purple-500"}`}
+        ${errors[name] ? "border-red-500 focus:ring-red-500" : "border-purple-500/20 focus:ring-purple-500"}`}
       />
       {errors[name] && (
         <p className="text-sm text-red-500">{errors[name]?.message}</p>
