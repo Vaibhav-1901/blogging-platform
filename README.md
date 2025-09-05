@@ -9,7 +9,7 @@ Built with **React (frontend)** and **Express.js + MongoDB (backend)**.
 - ✍️ User authentication (register/login)
 - 📰 Create, update, and delete blogs
 - 📌 View all blogs or user-specific blogs
-- 💬 Comment system (optional if you plan to add)
+- 💬 Comment system
 - 🎨 Modern responsive UI
 
 ---
