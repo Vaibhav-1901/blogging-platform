@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useBlog } from "../context/BlogContext";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 
 function useGetAllBlogs() {
   const [blogs, setBlogs] = useState([]);

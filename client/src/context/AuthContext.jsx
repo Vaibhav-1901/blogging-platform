@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { BASE_URL } from "../../../server/constants"; // adjust path
+import { BASE_URL } from "../constants"; // adjust path
 
 const AuthContext = createContext();
 

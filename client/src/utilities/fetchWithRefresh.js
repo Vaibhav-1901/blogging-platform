@@ -1,5 +1,4 @@
-import { BASE_URL } from "../../../server/constants";
-
+import { BASE_URL } from "../constants";
 const fetchWithRefresh = async function (url, options = {},) {
   let res = await fetch(url, {
     ...options,

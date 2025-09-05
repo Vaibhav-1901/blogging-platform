@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 import { useBlog } from "../context/BlogContext";
 
 

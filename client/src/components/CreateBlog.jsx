@@ -3,7 +3,7 @@ import { useState } from "react";
 import InputField from "./InputField";
 import { useNavigate } from "react-router-dom";
 import { useBlog } from "../context/BlogContext";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 import fetchWithRefresh from "../utilities/fetchWithRefresh";
 
 function CreateBlog() {

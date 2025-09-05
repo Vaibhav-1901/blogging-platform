@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import useGetUser from "../hooks/UserGetUser";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 import fetchWithRefresh from "../utilities/fetchWithRefresh";
 import { toast } from "react-toastify";
 

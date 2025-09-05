@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import InputField from "../components/InputField";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 import fetchWithRefresh from "../utilities/fetchWithRefresh";
 import { ToastContainer,toast } from "react-toastify";
 

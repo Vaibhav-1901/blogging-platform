@@ -4,7 +4,7 @@ import useGetSingleBlog from "../hooks/UseGetSingleBlog";
 import { useForm } from "react-hook-form";
 import InputField from "./InputField";
 import { useAuth } from "../context/AuthContext";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 import { useBlog } from "../context/BlogContext";
 import useGetUser from "../hooks/UserGetUser";
 import fetchWithRefresh from "../utilities/fetchWithRefresh";

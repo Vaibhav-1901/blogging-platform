@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useGetSingleBlog from "../hooks/UseGetSingleBlog";
-import { BASE_URL } from "../../../server/constants";
+import { BASE_URL } from "../constants";
 import InputField from "./InputField";
 import { useBlog } from "../context/BlogContext";
 
