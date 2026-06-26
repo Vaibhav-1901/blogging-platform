@@ -36,7 +36,6 @@ function CreateBlog() {
                 },
                 credentials: "include",
                 body: JSON.stringify(data),
-
             });
 
             const result = await res.json();

@@ -19,7 +19,10 @@ import blogRouter from "./src/routes/blog.router.js";
 
 app.use("/api/users", userRouter)
 app.use("/api/blogs", blogRouter)
-
+app.get("/health",(req,res)=>{
+  console.log("Ping received")
+  res.status(200).json({ message: "Server is healthy" })
+})
 export { app }
 
 
