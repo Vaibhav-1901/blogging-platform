@@ -3,16 +3,13 @@ import React from 'react'
 function Contact() {
   return (
     <div className="flex flex-col items-center justify-center mt-16 px-6">
-      {/* Heading */}
       <h1 className="text-4xl font-extrabold text-purple-400 mb-2">Contact Me</h1>
       <p className="text-gray-400 mb-10 text-center max-w-xl">
         Let’s connect! You can reach out through these platforms or send me a message directly.
       </p>
 
-      {/* Contact Options */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8  w-full max-w-3xl">
 
-        {/* LinkedIn */}
         <a
           href="https://www.linkedin.com/in/vaibhav-singh-978103325/"
           target="_blank"
@@ -28,7 +25,6 @@ function Contact() {
           <span className="mt-3 text-gray-300 font-medium">LinkedIn</span>
         </a>
 
-        {/* Email */}
         <a
           href="https://mail.google.com/mail/?view=cm&fs=1&to=vaibhavsingh192007@gmail.com"
           target="_blank"
@@ -46,7 +42,6 @@ function Contact() {
         </a>
       </div>
 
-      {/* Contact Form */}
 
     </div>
   )

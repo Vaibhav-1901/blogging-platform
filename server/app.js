@@ -5,8 +5,8 @@ import cors from "cors";
 const app = express();
 app.use(cors({
   origin: [
-    "http://localhost:5173",                      // local dev
-    "https://blogging-platform-swart.vercel.app"  // deployed frontend
+    "http://localhost:5173",                      
+    "https://blogging-platform-swart.vercel.app"  
   ],
   credentials: true
 }));

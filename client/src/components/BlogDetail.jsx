@@ -19,7 +19,7 @@ function BlogDetail() {
   const { isLoggedIn } = useAuth();
   const user = useGetUser();
 
-  // to get all comments
+
   useEffect(() => {
     if (blog?.comments) {
       setComments(blog.comments);
@@ -41,7 +41,7 @@ function BlogDetail() {
     formState: { errors },
   } = useForm();
 
-  // Add comment
+  
   const onSubmit = async (data) => {
     try {
       await fetchWithRefresh(`${BASE_URL}/api/blogs/${slug}/comment`, {
@@ -61,7 +61,6 @@ function BlogDetail() {
     }
   };
 
-  // DELETE BLOG
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this blog?")) return;
     try {
@@ -99,7 +98,6 @@ function BlogDetail() {
             </div>
           )}
 
-          {/* Title + Author + Date */}
           <div className="text-center mt-[30px] mb-6">
             <h1 className="text-4xl font-bold text-purple-400">{blog.title}</h1>
             <p className="text-gray-400 text-sm mt-2">
@@ -111,7 +109,6 @@ function BlogDetail() {
             </p>
           </div>
 
-          {/* Blog Image */}
           {blog.imageUrl && (
             <img
               src={blog.imageUrl}
@@ -120,12 +117,10 @@ function BlogDetail() {
             />
           )}
 
-          {/* Blog Content */}
           <div className="max-w-none mb-10 text-gray-200 px-7">
             {blog.content}
           </div>
 
-          {/* Comments Section */}
           <div className="bg-purple-500/8 p-4 rounded-lg shadow-md mt-8 max-w-2xl mx-auto">
             <h3 className="text-lg font-semibold mb-3 text-white">💬 Comments</h3>
 
@@ -154,7 +149,6 @@ function BlogDetail() {
             )}
           </div>
 
-          {/* DIsplayig  Comments */}
           <div className="space-y-3 mt-4 max-w-2xl mx-auto px-2">
             {comments.length > 0 ? (
               comments

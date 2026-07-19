@@ -9,7 +9,6 @@ const fetchWithRefresh = async function (url, options = {},) {
     const data = await res.json().catch(() => ({}));
 
     if (data.message === "Invalid Access Token") {
-      // Refresh token call
       const refreshRes = await fetch(`${BASE_URL}/api/users/refresh`, {
         method: "POST",
         credentials: "include",
@@ -19,7 +18,6 @@ const fetchWithRefresh = async function (url, options = {},) {
         throw new Error("Session expired. Please log in again.");
       }
 
-      // Retry ing the original request
       res = await fetch(url, {
         ...options,
         credentials: "include",

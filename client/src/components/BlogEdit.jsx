@@ -9,7 +9,7 @@ import { useBlog } from "../context/BlogContext";
 function BlogEdit() {
     const { slug } = useParams();
     const navigate = useNavigate();
-    const { blog, error } = useGetSingleBlog(slug); // fetch blog by slug
+    const { blog, error } = useGetSingleBlog(slug); 
     const { refresh, setRefresh } = useBlog();
     const [message, setMessage] = useState("");
     const tags = [
@@ -40,7 +40,6 @@ function BlogEdit() {
         }
     }, [blog, reset]);
 
-    // Submit updated blog
     const onSubmit = async (data) => {
         try {
             const res = await fetch(`${BASE_URL}/api/blogs/${slug}`, {
@@ -55,7 +54,7 @@ function BlogEdit() {
 
             if (res.ok) {
                 setRefresh(prev => prev + 1)
-                navigate(`/blogs`); // redirect to updated blog page
+                navigate(`/blogs`);
 
             } else {
                 setMessage(`❌ ${updatedBlog.message || "Couldn't edit blog"}`)
@@ -72,7 +71,6 @@ function BlogEdit() {
         return <p className="text-red-400 text-center mt-10">Error: {error}</p>;
     }
 
-    //SAme as create blog 
 
     return (
         <div className="min-h-screen bg-black flex justify-center items-start py-10">
@@ -82,7 +80,6 @@ function BlogEdit() {
             >
                 <h2 className="text-2xl font-bold text-purple-400 mb-4">✏️ Edit Blog</h2>
 
-                {/* Title */}
                 <div>
                     <InputField
                         labe="Title"
@@ -110,7 +107,6 @@ function BlogEdit() {
                     </select>
                 </div>
 
-                {/* Content */}
                 <div>
                     <label className="block text-gray-300 mb-1">Content</label>
                     <textarea
@@ -126,7 +122,6 @@ function BlogEdit() {
                     )}
                 </div>
 
-                {/* Image URL */}
                 <div>
                     <label className="block text-gray-300 mb-1">Image URL (optional)</label>
                     <input
@@ -142,7 +137,6 @@ function BlogEdit() {
                     </p>
                 )}
 
-                {/* Buttons */}
                 <div className="flex justify-end gap-3 mt-4">
                     <button
                         type="button"

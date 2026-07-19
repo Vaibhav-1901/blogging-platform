@@ -17,7 +17,7 @@ function useGetSingleBlog(slug) {
 
         const data = await res.json();
         if (!res.ok) {
-          throw new Error(data.message || "Failed to fetch blogs");//passing in try catch 
+          throw new Error(data.message || "Failed to fetch blogs")
         }
         setBlog(data.data || []);
       } catch (err) {

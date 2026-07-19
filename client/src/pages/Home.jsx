@@ -34,7 +34,7 @@ const Home = () => {
   }
 
   const filteredBlogs = selectedTag
-    ? blogs.filter((blog) => blog.tags?.includes(selectedTag))//Everything included if empty
+    ? blogs.filter((blog) => blog.tags?.includes(selectedTag))
     : blogs;
   const blogsToShow = filteredBlogs.slice(0, visibleCount);
 
@@ -50,7 +50,7 @@ const Home = () => {
             value={selectedTag}
             onChange={(e) => {
               setSelectedTag(e.target.value);
-              setVisibleCount(3);//Reseting back after filter 
+              setVisibleCount(3);
             }}
             className="bg-black text-white px-3 py-2 rounded-lg border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 sm:w-auto w-full"
           >
@@ -63,7 +63,6 @@ const Home = () => {
           </select>
         </div>
 
-        {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogsToShow.length > 0 ? (
             blogsToShow.map((blog, index) => (
@@ -83,7 +82,6 @@ const Home = () => {
           )}
         </div>
 
-        {/* Show More Button */}
         {visibleCount < filteredBlogs.length && (
           <div className="text-center mt-8">
             <button

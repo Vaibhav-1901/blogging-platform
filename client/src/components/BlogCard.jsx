@@ -13,17 +13,14 @@ function BlogCard({ title, content, image, onClick, blogs }) {
       "
       onClick={onClick}
     >
-      {/* Image */}
       <img
         src={image}
         alt={title}
         className="w-full h-48 object-cover rounded-t-2xl"
       />
 
-      {/* Divider */}
       <div className="border-t border-purple-400"></div>
 
-      {/* Content Area */}
       <div className="p-3">
         <h2 className="text-xl font-bold text-purple-300 hover:text-purple-400 transition-colors duration-200">
           {title}

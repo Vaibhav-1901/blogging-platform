@@ -7,11 +7,10 @@ const generateAccessAndRefreshToken = async function (UserId) {
         const user = await User.findOne({ _id: UserId });
         const AccessToken = user.generateAccessToken();
         const RefreshToken = user.generateRefreshToken();
-        // console.log(AccessToken)
-        //Have to Store Refresh Token in the DB 
+       
         user.RefreshToken = RefreshToken;
         await user.save({ validateBeforeSave: false });
-        // console.log("Access and Refresh Token Generated")
+      
         return { AccessToken, RefreshToken };
 
     } catch (error) {
@@ -23,15 +22,11 @@ const generateAccessAndRefreshToken = async function (UserId) {
 
 
 const registerUser = async function (req, res) {
-    //all fields
-    //check if user already exists
-    //store in DB 
-    //give access/refresh token 
-    // console.log(req.body)
+  
 
     try {
         const { fullname, username, password } = req.body;
-        // console.log(req.body);
+   
 
         if ([fullname, username, password].some((field => field?.trim() === ""))) {
             return res.status(400).json({ message: "All fields are required" });
@@ -56,11 +51,7 @@ const registerUser = async function (req, res) {
 }
 
 const loginUser = async function (req, res) {
-    //except
-    //validate
-    //find user if not make him register
-    //compare password
-    //give access token
+    
 
     try {
         const { username, password } = req.body;
@@ -106,7 +97,6 @@ const logoutUser = async function (req, res) {
         path: "/",
     }
     const user = req.user;
-    // console.log(user.email);
     await User.findByIdAndUpdate(
         user._id,
         {
@@ -149,11 +139,11 @@ const RefreshAccessToken = async (req, res) => {
     }
 
     const IncomingRefreshToken = req.cookies?.RefreshToken || req.body.RefreshToken
-    if (!IncomingRefreshToken) {//Getting the token 
+    if (!IncomingRefreshToken) {
         return res.status(400).json({ message: "No Refresh Token" });
     }
     try {
-        const DecodedRefreshToken = jwt.verify(IncomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);//Decoding
+        const DecodedRefreshToken = jwt.verify(IncomingRefreshToken, process.env.REFRESH_TOKEN_SECRET);
 
         const id = DecodedRefreshToken._id;
 
@@ -168,7 +158,6 @@ const RefreshAccessToken = async (req, res) => {
 
         }
 
-        //All verifications Done Generating Access Token
 
         const { AccessToken, RefreshToken } = await generateAccessAndRefreshToken(user._id);//Destructing cant be diff from what you are returning
 

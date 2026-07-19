@@ -40,7 +40,6 @@ const Navbar = () => {
                     <Link to="/">WordSphere</Link>
                 </div>
 
-                {/* Large */}
                 <div className="space-x-6 hidden ml-14 md:flex">
                     <Link to="/" className="hover:text-purple-400 transition">
                         Home
@@ -107,7 +106,6 @@ const Navbar = () => {
                     )}
                 </div>
 
-                {/*  Hamburger for mobile */}
                 <button
                     className="md:hidden text-2xl focus:outline-none"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -118,7 +116,6 @@ const Navbar = () => {
             </nav>
            
 
-            {/* Mobile*/}
             {isMenuOpen && (
 
 

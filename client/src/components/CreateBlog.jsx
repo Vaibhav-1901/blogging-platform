@@ -44,7 +44,7 @@ function CreateBlog() {
                 setMessage("✅ Blog created successfully!");
                 reset();
                 navigate(`/blogs`);
-                setRefresh(prev => prev + 1)//FOR RE RENDER OF THE BLOG ARRAY 
+                setRefresh(prev => prev + 1)
             }
             else {
                 setMessage(`❌ ${result.message || "Couldn't create blog"}`)
@@ -63,7 +63,6 @@ function CreateBlog() {
                 </h1>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    {/* Title */}
                     <div>
                         <InputField
                             labe="Title"
@@ -75,7 +74,6 @@ function CreateBlog() {
                         />
                     </div>
 
-                    {/* Tags */}
 
                     <div>
                         <select  {...register("tags", { required: "Please select a tag" })}
@@ -94,7 +92,6 @@ function CreateBlog() {
                         </select>
                     </div>
 
-                    {/* Content */}
                     <div>
                         <label className="block text-gray-300 mb-1">Content</label>
                         <textarea
@@ -110,7 +107,6 @@ function CreateBlog() {
                         )}
                     </div>
 
-                    {/* Image URL */}
                     <div>
                         <label className="block text-gray-300 mb-1">Image URL (optional)</label>
                         <input
@@ -121,17 +117,15 @@ function CreateBlog() {
                         />
                     </div>
 
-                    {/* Submit */}
                     <button
                         type="submit"
-                        disabled={isSubmitting}//disabling submit 
+                        disabled={isSubmitting}
                         className="w-full cursor-pointer bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-lg transition"
                     >
                         {isSubmitting ? "Creating..." : "Create Blog"}
                     </button>
                 </form>
 
-                {/* Message */}
                 {message && (
                     <p className="mt-4 text-center text-gray-300">{message}</p>
                 )}

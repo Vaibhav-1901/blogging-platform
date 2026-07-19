@@ -3,14 +3,14 @@ import { Blog } from "../models/blog.model.js";
 
 
 const createBlog = async function (req, res) {
-  //already know that the user is signed in 
+ 
   try {
     const { title, content } = req.body;
     let imageUrl = req.body.image;
     if (!imageUrl || imageUrl.trim() === "") {
       imageUrl = undefined;
     }
-    const author = req.user._id;//not getting username as it can change
+    const author = req.user._id;
     const tags = req.body.tags ? req.body.tags : []
     const blog = await Blog.create({
       title,
